@@ -11,7 +11,8 @@ NUMBER_OF_BYTES_IN_BLOCK / NUMBER_OF_CHARS_IN_INDEX preferably should be more th
 in double addressing.
 
 
-#Supported commands List
+##Supported commands list
+
 ls to list files in current directory
 
 cd $name$ to go to directory named $name$
