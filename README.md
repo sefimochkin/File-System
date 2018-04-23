@@ -10,6 +10,7 @@ Number of files is pre-set as *NUMBER_OF_INODES*.
 *NUMBER_OF_BYTES_IN_BLOCK / NUMBER_OF_CHARS_IN_INDEX* preferably should be more than two, or there's practically no point 
 in double addressing.
 
+
 **Supported commands list**
 
 * ls to list files in current directory
