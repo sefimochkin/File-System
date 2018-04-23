@@ -1,4 +1,4 @@
-# File-System
+# File System
 ext2-like File System by Efimochkin Sergey.
 
 In runtime whole file system is also stored in dynamic memory.
