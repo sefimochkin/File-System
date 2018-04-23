@@ -1,17 +1,12 @@
 # File-System
 ext2-like File System by Efimochkin Sergey.
-
 In runtime whole file system is also stored in dynamic memory.
-
 Number of files is pre-set as NUMBER_OF_INODES.
-
 NUMBER_OF_CHARS_IN_INDEX must be less than NUMBER_OF_BYTES_IN_BLOCK;  
-
 NUMBER_OF_BYTES_IN_BLOCK / NUMBER_OF_CHARS_IN_INDEX preferably should be more than two, or there's practically no point 
 in double addressing.
 
-
-##Supported commands list
+*Supported commands list*
 
 ls to list files in current directory
 
