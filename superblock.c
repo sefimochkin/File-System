@@ -104,6 +104,7 @@ void free_block(struct superblock *sb, struct block* block){
 
 void put_index_in_address_block(struct superblock *sb, char* address_block, unsigned int index){
     char * index_str = malloc(sizeof(char) * sb->number_of_chars_in_index);
+    memset(index_str, 0, sb->number_of_chars_in_index);
     sprintf(index_str, "%u", index);
     strncpy(address_block, index_str, sb->number_of_chars_in_index);
     free(index_str);
@@ -111,6 +112,7 @@ void put_index_in_address_block(struct superblock *sb, char* address_block, unsi
 
 struct inode* get_inode_by_index_in_address_block(struct superblock *sb, char* address_block){
     char * index_str = malloc(sizeof(char) * sb->number_of_chars_in_index);
+    memset(index_str, 0, sb->number_of_chars_in_index);
     strncpy(index_str, address_block, sb->number_of_chars_in_index);
     unsigned int index;
     sscanf(index_str, "%u", &index);
@@ -121,6 +123,8 @@ struct inode* get_inode_by_index_in_address_block(struct superblock *sb, char* a
 
 struct block* get_block_by_index_in_address_block(struct superblock *sb, char* address_block){
     char * index_str = malloc(sizeof(char) * sb->number_of_chars_in_index);
+    memset(index_str, 0, sb->number_of_chars_in_index);
+
     strncpy(index_str, address_block, sb->number_of_chars_in_index);
     unsigned int index;
     sscanf(index_str, "%u", &index);

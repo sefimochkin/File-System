@@ -19,6 +19,7 @@ void * get_memory_for_filesystem(){
                                 + NUMBER_OF_INODES * sizeof(struct inode) + NUMBER_OF_BLOCKS * sizeof(struct block) +
                                 NUMBER_OF_BLOCKS*NUMBER_OF_BYTES_IN_BLOCK;
     void *filesystem = malloc(size_of_filesystem);
+    memset(filesystem, 0, size_of_filesystem);
 
     return filesystem;
 }
@@ -75,7 +76,8 @@ struct inode * open_filesystem(char* file_system_name, char* filesystem){
         return root;
     }
     else{
-        magic_symbols = malloc(sizeof(char) * strlen(MAGIC_SYMBOLS));
+        magic_symbols = malloc(sizeof(char) * (strlen(MAGIC_SYMBOLS)+1));
+        memset(magic_symbols, 0, (strlen(MAGIC_SYMBOLS)+1));
         fread(magic_symbols, sizeof(char), strlen(MAGIC_SYMBOLS), file_with_filesystem);
         if(strcmp(magic_symbols, MAGIC_SYMBOLS) != 0){
             fprintf(stderr, "Not compatible file_system!");
@@ -244,7 +246,8 @@ void import_file(struct superblock *sb, char* inner_name, char* outer_name, stru
     rewind(filep);
 
 
-    char* input = malloc(sizeof(char) * size_of_file);
+    char* input = malloc(sizeof(char) * (size_of_file +1));
+    memset(input, 0, (size_of_file +1));
     fread(input, sizeof(char), size_of_file, filep);
 
     touch(sb, inner_name, input, directory);
@@ -256,6 +259,7 @@ void import_file(struct superblock *sb, char* inner_name, char* outer_name, stru
 
 void export_file(struct superblock *sb, char* inner_name, char* outer_name, struct inode* directory){
     char* file_path = malloc(sizeof(char) * (strlen(outer_name)+3));
+    memset(file_path, 0, strlen(outer_name)+3);
     strncpy(file_path, "./", 2);
     strncpy(&file_path[2], outer_name, strlen(outer_name) + 1);
 
@@ -271,5 +275,6 @@ void export_file(struct superblock *sb, char* inner_name, char* outer_name, stru
     fwrite(output, sizeof(char), strlen(output), filep);
     fclose(filep);
 
+    free(output);
     free(file_path);
 }

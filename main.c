@@ -28,6 +28,10 @@ int main(int argc, char* argv[]) {
 
     struct superblock* sb = (struct superblock *) filesystem;
     struct inode** current_directory = &root;
+    //mkdir(sb, "test", root);
+    //char* name1 = get_file_name(sb, get_inode_by_name(sb, "test", root));
+    //mkdir(sb, "test2", root);
+
 
     while(fgets(input_line, 1184, stdin) != 0){
         int number_of_arguments = sscanf(input_line, "%s %s %s", command, first_argument, second_argument);

@@ -271,7 +271,7 @@ struct inode* get_inode_by_name(struct superblock *sb, char*name, struct inode* 
             struct inode* inode = get_inode_by_index_in_address_block(sb, address_block->data + j);
             char* inode_name = get_file_name(sb, inode);
 
-            if(strncmp(inode_name, name, (size_t)inode->size_of_name_in_chars) == 0){
+            if(strncmp(inode_name, name, (size_t)inode->size_of_name_in_chars + 1) == 0){
                 free(inode_name);
                 return inode;
             }
@@ -299,7 +299,7 @@ _Bool check_doubling_name(struct superblock *sb, char*name, struct inode* direct
             struct inode *inode = get_inode_by_index_in_address_block(sb, address_block->data + j);
             char *inode_name = get_file_name(sb, inode);
 
-            if (strncmp(inode_name, name, (size_t) inode->size_of_name_in_chars) == 0) {
+            if (strncmp(inode_name, name, (size_t)inode->size_of_name_in_chars + 1 ) == 0) {
                 free(inode_name);
                 return 0;
             }
